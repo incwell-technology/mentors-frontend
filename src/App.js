@@ -1,11 +1,18 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router , Route } from 'react-router-dom'
+import './App.css'
+
 import Authentication from './components/Authentications/Authentication';
+import Home from './components/Home'
+
 
 function App() {
     return (
         <>
-            <Authentication />
+            <Router>
+                <Route exact path='/' component={Authentication} />
+                <Route path='/home' component={Home} />
+            </Router>
         </>
     );
 }

@@ -7,5 +7,9 @@ const Home = () => {
 		</div>
 	)
 }
+
+export const About = {
+
+}
  
 export default Home;

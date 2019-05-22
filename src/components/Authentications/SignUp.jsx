@@ -1,40 +1,29 @@
 import React, { Component } from "react";
 import axios from "axios";
-export default class SignUpForm extends Component {
+export default class SignUp extends Component {
   state = {
     first_name: "",
     last_name: "",
     email: "",
     password: ""
   };
-  //   componentDidMount() {
-  //     axios.get("192.168.1.117:3000/mentors/signup").then(res => {
-  //       console.log(res);
-  //       this.setState({
-  //         first_name: res.data.name
-  //       });
-  //     });
-  //   }
+
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    // const data = {
-    //   first_name: this.state.first_name,
-    //   last_name: this.state.last_name,
-    //   email: this.state.email,
-    //   password: this.state.password
-    // };
-    axios
-      .post("http://192.168.1.125:3000/mentors/signup", this.state)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+    try {
+      const res = await axios.post(
+        "http://192.168.1.125:3000/mentors/signup",
+        this.state
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {

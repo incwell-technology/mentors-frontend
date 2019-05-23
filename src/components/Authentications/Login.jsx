@@ -17,16 +17,16 @@ class Login extends Component {
 		status: ''
 	}
 
-	handleSubmit= async e => {
+	handleSubmit = async e => {
 		e.preventDefault()
 		try {
-			const res = await axios.post('http://192.168.1.125:3000/mentors/login', this.state)
+			const res = await axios.post('http://192.168.1.110:3000/mentors/login', this.state)
 			console.log(`im here ${res.message}`)
 			if (res.status == 200) {
 				this.setState({ status: res.status })
 			}
 		} catch (error) {
-			this.setState({status: 409})
+			this.setState({ status: 409 })
 		}
 	}
 
@@ -37,8 +37,8 @@ class Login extends Component {
 	render() {
 		return (
 			<>
-				{this.state.status === 200 && <Redirect to='/home' />}
-				{this.state.status !== '' && this.state.status !== 200 && <Failed />}
+				{this.state.status === 200 && <Redirect push to='/home' />}
+				{this.state.status === 409 && <Failed />}
 				<form onSubmit={this.handleSubmit} method="post">
 					<input type="email" onChange={this.handleInput} name="email" placeholder="Email address" />
 					<input type="password" onChange={this.handleInput} name="password" placeholder="Password" />
@@ -46,8 +46,8 @@ class Login extends Component {
 				</form>
 				<div className="signup">
 					<p>or</p>
+					<p>Sign in with</p>
 					<ul>
-						<p>Sign in with</p>
 						<li>
 							<a href="#">
 								<i className="fab fa-facebook" />

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+    <title>Mentors</title>
+</head>
+<body>
+    <div class="">
+        <div class="container">
+                <div class="column1"><img src="mentor.jpg"></div>
+                <div class="column2">
+                    <!-- Tab links -->
+                    <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Login')" id="defaultOpen"><b>Login</b></button>
+                    <button class="tablinks" onclick="openCity(event, 'Signup')"><b>Signup</b></button>
+                </div>
+                
+                <!-- Tab content -->
+                <div id="Login" class="tabcontent">
+                    <div>
+                        <form action="/action_page.php" method="post">
+                            <input type="email" name="email" placeholder="Email address" required> <br>
+                            <input type="password" name="password" placeholder="Password" required><br>
+                            <input type="submit" value="Login">
+                        </form>
+                        <p style="font-size: 22px">or</p>
+                        <p style="font-size: 22px">Sign in with</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook icon icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google icon icon-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin icon icon-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="Signup" class="tabcontent">
+                        <form action="/action_page.php" method="post">
+                            <input type="email" name="email" placeholder="Email address" required><br>
+                            <input type="text" name="name" placeholder="First Name" required><br>
+                            <input type="text" name="name" placeholder="Last Name"><br>
+                            <input type="password" name="password" placeholder="Password" required><br>
+                            <input type="password" name="password" placeholder="Confirm Password" required><br>
+                            Signup as: <select name="cars">
+                                <option value="student">Student</option>
+                                <option value="mentor">Mentor</option>
+                              </select>
+                            <input type="submit" value="Signup">
+                        </form>
+                </div>
+        </div>
+    </div>
+    <script>
+            function openCity(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>

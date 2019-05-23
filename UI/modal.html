@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fbModal"><i class="fa fa-facebook icon icon-facebook"></i></button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="fbModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Facebook</h4>
+        </div>
+        <div class="modal-body">
+                <form action="/action_page.php" method="post">
+                    Enter your email address:
+                    <input type="email" name="email" placeholder="Email address" required><br>
+                    <input type="submit" value="Submit">
+                </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#gmailModal"><i class="fa fa-google icon icon-google"></i></button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="gmailModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Gmail</h4>
+        </div>
+        <div class="modal-body">
+                <form action="/action_page.php" method="post">
+                    Enter your email address:
+                    <input type="email" name="email" placeholder="Email address" required><br>
+                    <input type="submit" value="Submit">
+                </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#liModal"><i class="fa fa-linkedin icon icon-linkedin"></i></i></button>
+   <!-- Modal -->
+   <div class="modal fade" id="liModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">linkedin</h4>
+          </div>
+          <div class="modal-body">
+                  <form action="/action_page.php" method="post">
+                      Enter your email address:
+                      <input type="email" name="email" placeholder="Email address" required><br>
+                      <input type="submit" value="Submit">
+                  </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</div>
+
+</body>
+</html>

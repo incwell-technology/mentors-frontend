@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import Social from '../Social/Social'
+
 
 const Failed = () => {
 	return (
@@ -44,27 +46,7 @@ class Login extends Component {
 					<input type="password" onChange={this.handleInput} name="password" placeholder="Password" />
 					<input type="submit" value="Login" />
 				</form>
-				<div className="signup">
-					<p>or</p>
-					<p>Sign in with</p>
-					<ul>
-						<li>
-							<a href="#">
-								<i className="fab fa-facebook" />
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i className="fab fa-google" />
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i className="fab fa-linkedin-in" />
-							</a>
-						</li>
-					</ul>
-				</div>
+				<Social />
 			</>
 		)
 	}

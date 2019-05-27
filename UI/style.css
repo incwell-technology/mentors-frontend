@@ -105,6 +105,10 @@ body{
   .icon-linkedin {
     background: #007bb5;
     color: white;
+  }
+  .icon-github{
+      background-color: black;
+      color: white;
 }
 .helper{
     font-size: 12px;

@@ -1,7 +1,7 @@
 import React from 'react'
-import GoogleLogin from './Google/GoogleLogin'
-import FacebookLogin from './Facebook/FacebookLogin'
-import LinkedInLogin from './LinkedIn/LinkedInLogin'
+import GoogleLogin from './google/GoogleLogin'
+import FacebookLogin from './facebook/FacebookLogin'
+import LinkedInLogin from './linkedin/LinkedInLogin'
 
 
 const Social = () => {

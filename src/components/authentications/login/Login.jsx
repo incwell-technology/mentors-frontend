@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import Social from '../Social/Social'
+import Social from '../social/Social'
 
 
 const Failed = () => {
@@ -23,12 +23,11 @@ class Login extends Component {
 		e.preventDefault()
 		try {
 			const res = await axios.post('http://192.168.1.110:3000/mentors/login', this.state)
-			console.log(`im here ${res.message}`)
-			if (res.status == 200) {
+			if (res.status === 200) {
 				this.setState({ status: res.status })
 			}
 		} catch (error) {
-			this.setState({ status: 409 })
+			console.log(error)
 		}
 	}
 

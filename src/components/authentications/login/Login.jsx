@@ -11,7 +11,6 @@ const Failed = () => {
 		</div>
 	)
 }
-
 class Login extends Component {
 	state = {
 		email: '',
@@ -50,6 +49,5 @@ class Login extends Component {
 		)
 	}
 }
-
 
 export default Login

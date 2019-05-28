@@ -140,7 +140,7 @@ input[type=submit] {
     background-color: #fff;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 60%;
+    width: 73%;
     height: 30em;
     margin: 2% auto 0 auto;
     justify-items: center;
@@ -163,7 +163,7 @@ input[type=submit] {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 60px;
+    margin: 0px 60px;
     cursor: pointer;
     float: right;
     

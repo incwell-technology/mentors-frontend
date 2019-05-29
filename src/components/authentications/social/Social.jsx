@@ -2,6 +2,7 @@ import React from 'react'
 import GoogleLogin from './google/GoogleLogin'
 import FacebookLogin from './facebook/FacebookLogin'
 import LinkedInLogin from './linkedin/LinkedInLogin'
+//import GithubLogin from './github/GithubLogin';
 
 
 const Social = () => {
@@ -13,6 +14,7 @@ const Social = () => {
 				<FacebookLogin />
 				<GoogleLogin />
 				<LinkedInLogin />
+				
 			</ul>
 		</div>
 	)

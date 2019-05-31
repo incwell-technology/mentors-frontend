@@ -54,7 +54,7 @@ body{
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
-    width:50%
+    width:50%;
 }
 /* background color of buttons on hover */
 .tab button:hover {
@@ -90,7 +90,6 @@ body{
     text-align: center;
     text-decoration: none;
     margin: 5px 2px;
-    border-radius: 50%;
   }
   .icon:hover {
       opacity: 0.7;
@@ -139,7 +138,7 @@ input[type=submit] {
 }
 .header{
     background-color: #1790c5;
-    font-family: 'Roboto' sans-serif;
+    font-family: 'Roboto' , sans-serif;
 
 }
 .selectuser{
@@ -187,23 +186,22 @@ input[type=submit] {
     .user:hover{
         width: 65%;
         height: 70%;
-        margin-top: -10%
+        margin-top: -10%;
     }
     .user:active{
         width: 65%;
         height: 70%;
         box-shadow: 0 4px 4px 0px #02c0ae;
-        margin-top: -10%
+        margin-top: -10%;
 }
 .selectuser .active{
     width: 65%;
     height: 70%;
     box-shadow: 0 4px 4px 0px #02c0ae;
-    margin-top: -10%
+    margin-top: -10%;
 }
-.fab .fa-facebook{
-border-radius: 50px !important;
-}
+
+
 
 @media only screen and (max-width: 768px){
     .container{

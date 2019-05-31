@@ -1,55 +1,43 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-import FacebookLogin from 'react-facebook-login'
-
-class FacebookLoginComponent extends Component {
+import FacebookAuth from 'react-facebook-auth'
+import swal from 'sweetalert'
+class FacebookLogin extends Component {
 	state = {
-		status: ''
+		success: ''
 	}
 
-	responseFacebook = async (res) => {
+	MyFacebookButton = ({ onClick }) => (
+		<i class="fa fa-facebook icon icon-facebook" onClick={onClick}></i>
+	);
+	authenticate = async (res) => {
 		try {
-			console.log(res)
-			const data = await axios.post('http://192.168.1.120:3000/v1/auth/facebook', { accessToken: res.accessToken })
-			console.log(this.onSuccess)
-			this.setState({ status: data.status })
-		} catch (error) {
-			console.log(this.onFailure)
+			const data = await axios.post('http://192.168.1.108:3000/v1/auth/facebook', { accessToken: res.accessToken })
+			this.setState({ success: data.data.success })
 		}
-
+		 catch (error) {
+			this.setState({ success: 'false' })
+		}
 	}
+	
 	render() {
 		return (
 			<li>
-				{this.state.status === 200 && <Redirect push to='role' />}
-
-				<FacebookLogin
+				{this.state.success === 'true' && <Redirect push to='role' />}
+				{this.state.success === 'false' && swal({
+					title: "Network error",
+					text: "Try again later!",
+					icon: "error",
+					button: "ok",
+				})}
+				<FacebookAuth
 					appId="507835646419191"
-					autoLoad={true}
-					fields="name,email,picture"
-					callback={this.responseFacebook}
-					render={renderProps => (
-						<i style={{ cursor: 'pointer' }} className="fab fa-facebook" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
-					
-						)}
-					onSuccess={this.responseFacebook}
-					onFailure={this.responseFacebook}
-				/>,
-				{/* <FacebookLogin
-					appId="2ecff71ff55709ee4a8e"
-					render={renderProps => (
-						<i style={{ cursor: 'pointer' }} className="fab fa-facebook" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
-					)}
-					buttonText="Login"
-					onSuccess={this.handleAuth}
-					onFailure={this.handleAuth}
-					cookiePolicy={'single_host_origin'}
-				/> */}
-
+					callback={this.authenticate}
+					component={this.MyFacebookButton}
+				/>
 			</li>
 		)
 	}
 }
-
-export default FacebookLoginComponent
+export default FacebookLogin

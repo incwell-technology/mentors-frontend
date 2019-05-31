@@ -6,19 +6,19 @@ const SelectUser = () => {
 
     return (
         <div>
-            <div class="selectcolor"><h1> WELCOME TO I NEED MENTOR!<br /> Sign Up as </h1></div>
-            <div class="selectuser">
-                <div class="user">
+            <div className="selectcolor"><h1> WELCOME TO I NEED MENTOR!<br /> Sign Up as </h1></div>
+            <div className="selectuser">
+                <div className="user">
                     <img src={teacher} />
-                    <h2 class="selectcolor">MENTOR</h2>
+                    <h2 className="selectcolor">MENTOR</h2>
                 </div>
-                <div class="user">
+                <div className="user">
                     <img src={student} />
-                    <h2 class="selectcolor">STUDENT</h2>
+                    <h2 className="selectcolor">STUDENT</h2>
                 </div>
             </div>
             <div>
-                <button class="next">Next</button>
+                <button className="next">Next</button>
             </div>
         </div>
     )

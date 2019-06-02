@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import FacebookAuth from 'react-facebook-auth'
-import swal from 'sweetalert'
+
 class FacebookLogin extends Component {
 	state = {
 		success: ''
@@ -16,26 +16,26 @@ class FacebookLogin extends Component {
 			const data = await axios.post('http://192.168.1.108:3000/v1/auth/facebook', { accessToken: res.accessToken })
 			this.setState({ success: data.data.success })
 		}
-		 catch (error) {
+		catch (error) {
 			this.setState({ success: 'false' })
 		}
 	}
-	
+
 	render() {
 		return (
 			<li>
-				{this.state.success === 'true' && <Redirect push to='role' />}
-				{this.state.success === 'false' && swal({
-					title: "Network error",
-					text: "Try again later!",
-					icon: "error",
-					button: "ok",
-				})}
 				<FacebookAuth
 					appId="507835646419191"
 					callback={this.authenticate}
 					component={this.MyFacebookButton}
 				/>
+				{this.state.success === 'true' && <Redirect push to='role' />}
+				{this.state.success === 'false' &&
+					<div class="alert alert-danger">
+						<strong>Error!</strong> Couldn't sign you in.<br />
+						Please try again later.
+					</div>
+				}
 			</li>
 		)
 	}

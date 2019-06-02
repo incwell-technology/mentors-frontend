@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+
 export default class SignUp extends Component {
 	state = {
 		first_name: "",
@@ -50,26 +51,37 @@ export default class SignUp extends Component {
 		return lastName.test(this.state.last_name)
 	}
 
-	validity = ({ first_name, last_name, email, user_role, password, confirm_password }) => {
+	validity = ({ first_name, last_name, email, password, confirm_password }) => {
 		return (first_name !== "" &&
 			last_name !== "" &&
 			email !== "" &&
 			password !== "" &&
 			confirm_password !== "" &&
-			user_role !== "1" || user_role !== "0" &&
 			this.validateFirstName(this.state.first_name) &&
 			this.validateLastName(this.state.last_name) &&
 			this.validateEmail(this.state.email) &&
 			this.validatePass(this.state.password) &&
 			this.state.password === this.state.confirm_password
 		);
+
 	};
 
+	// emptyCheck = ({ first_name, last_name, email, password, confirm_password})=>{
+	// 	return( 
+	// 		first_name === "" ||
+	// 		last_name === "" ||
+	// 		email === "" ||
+	// 		password === "" ||
+	// 		confirm_password === "" 
+	// 	)
+	// }
 	render() {
 		return (
 			<div>
-				{this.state.status === 201 && <Redirect to="/Test" />}
 				<form onSubmit={this.handleSubmit} method="post">
+					{/* {this.emptyCheck(this.state) && (
+						<p style={{fontSize:'12px', marginLeft:'-20px'}}>All fields are compulsary.*</p>
+					)}  */}
 					<input type="radio" onChange={this.handleInput} className="mentor" name="user_role" value="1" checked="checked" /> Mentor
 					<input type="radio" onChange={this.handleInput} className="student" name="user_role" value="0" /> Student
 					<input type="text" onChange={this.handleInput} name="first_name" placeholder="First Name *" autoComplete="off" /><br />
@@ -80,7 +92,7 @@ export default class SignUp extends Component {
 						<div className="helper"> <p>Enter valid name</p></div>}
 					<input type="email" onChange={this.handleInput} name="email" placeholder="Email address *" /><br />
 					{this.state.email.length > 0 && !this.validateEmail(this.state.email) &&
-						<div className="helper"> <p>Email not valid</p></div>}
+						<div className="helper"> <p>Please enter valid email.</p></div>}
 
 					<input type="password" onChange={this.handleInput} name="password" placeholder="Password *" autoComplete="off" /><br />
 					{this.state.password.length > 0 && !this.validatePass(this.state.password) &&
@@ -100,16 +112,20 @@ export default class SignUp extends Component {
 
 					{!this.validity(this.state) && (
 						<input
-							style={{ background: "gray", cursor: "not-allowed" }}
+							style={{ opacity: '0.6', cursor: "not-allowed" }}
 							type="submit"
 							value="Signup"
 							disabled
 						/>
 					)}
-					{
-						this.validity(this.state) && (
-							<input style={{ color: 'red' }} type="submit" value="Signup" />
-						)}
+					{this.validity(this.state) && (
+						<input type="submit" value="Signup" />
+					)}
+
+					{this.state.status === 201 && <Redirect to="/Test" />}
+					{!this.state.status === 201 && <div class="alert alert-warning">
+						<strong>Error!</strong> SignUp failed.<br /> please try again!</div>}
+
 				</form>
 
 			</div>

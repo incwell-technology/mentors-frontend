@@ -1,13 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import Authentication from './components/authentications/Authentication';
+import Test from './components/Test';
 
 function App() {
-  return (
-    <div className="App">
-     <p>Hello Mentors</p>
-    </div>
-  );
+    return (
+        <>
+            <Router>
+                <Route exact path='/' component={Authentication} />
+                <Route path='/home' component={Test} />
+            </Router>
+        </>
+    );
 }
 
 export default App;

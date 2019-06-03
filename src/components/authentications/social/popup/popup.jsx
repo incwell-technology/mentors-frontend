@@ -28,7 +28,6 @@ class PopUp extends Component {
     }
     render() {
         return (
-
             <div className="verifybox">
                 <div className="verifyform">
                     <form onSubmit={this.handleSubmit} method="post">

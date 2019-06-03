@@ -21,7 +21,7 @@ class Login extends Component {
 	handleSubmit = async e => {
 		e.preventDefault()
 		try {
-			const res = await axios.post('http://192.168.1.110:3000/mentors/login', this.state)
+			const res = await axios.post('http://192.168.1.105:3000/mentors/login', this.state)
 			if (res.status === 200) {
 				this.setState({ status: res.status })
 			}

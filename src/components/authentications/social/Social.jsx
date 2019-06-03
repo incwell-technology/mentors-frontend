@@ -13,6 +13,7 @@ const Social = () => {
 				<FacebookLogin />
 				<GoogleLoginComponent />
 				<LinkedInLogin />
+				
 			</ul>
 		</div>
 	)

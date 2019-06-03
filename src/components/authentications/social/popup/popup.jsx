@@ -28,31 +28,26 @@ class PopUp extends Component {
     }
     render() {
         return (
-            <div className='signup'>
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal">&times;</button>
-                        <h4 className="modal-title">Facebook</h4>
-                    </div>
-                    <div className="modal-body">
-                        <form onSubmit={this.handleSubmit} method="post">
 
-                            {this.state.status === 201 && <Redirect to="/Test" />}
-                            Enter your email address:
-                        <input type="email" onChange={this.handleInput} name="email" placeholder="Email address" required /><br />
-                            {this.state.email.length > 0 && !this.validateEmail(this.state.email) &&
-                                <div className="helper"> <p>Email not valid</p></div>}
-                            {!this.validateEmail(this.state.email) &&
-                                <input style={{ opacity: '0.4', cursor: "not-allowed" }} type="submit" value="Submit" disabled />}
+            <div className="verifybox">
+                <div className="verifyform">
+                    <form onSubmit={this.handleSubmit} method="post">
 
-                            {this.validateEmail(this.state.email) && (
-                                <input type="submit" value="Signup" />
-                            )}
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                        {this.state.status === 201 && <Redirect to="/Test" />}
+                        Enter your email address:
+                        {this.state.email.length > 0 && !this.validateEmail(this.state.email) &&
+                            <div className="helper"> <p>Email not valid</p></div>}
+                <input type="email" name="email" placeholder="Email address" required /> <br />
+                        Enter your password:
+                <input type="password" name="password" placeholder="Password" required />
+                        {!this.validateEmail(this.state.email) &&
+                            <input style={{ opacity: '0.4', cursor: "not-allowed" }} type="submit" value="Submit" disabled />}
+
+                        {this.validateEmail(this.state.email) && (
+                            <input type="submit" value="Signup" />
+                        )}
+                        <input type="submit" value="Submit" />
+                    </form>
                 </div>
             </div>
 

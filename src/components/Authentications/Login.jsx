@@ -19,9 +19,8 @@ class Login extends Component {
 	handleSubmit = async e => {
 		e.preventDefault()
 		try {
-			const res = await axios.post('http://192.168.1.110:3000/mentors/login', this.state)
-			console.log(`im here ${res.message}`)
-			if (res.status == 200) {
+			const res = await axios.post(process.env.PUBLIC_URL + ':3000/v1/mentors/login', this.state)
+			if (res.status === 200) {
 				this.setState({ status: res.status })
 			}
 		} catch (error) {
@@ -34,6 +33,7 @@ class Login extends Component {
 	}
 
 	render() {
+		console.log(process.env.PUBLIC_URL)
 		return (
 			<>
 				{this.state.status === 200 && <Redirect push to='/home' />}

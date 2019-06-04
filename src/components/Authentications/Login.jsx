@@ -61,6 +61,7 @@ class Login extends Component {
 				{this.state.status === 200 && <Redirect push to='/home' />}
 				{this.state.status === 400 && <Failed />}
 				{this.state.status === 403 && <Redirect push to='/verification' />}
+				{this.state.status === 409 && <NoPassword />}
 				<form onSubmit={this.handleSubmit} method="post">
 					<input type="email" onChange={this.handleInput} name="email" placeholder="Email address" />
 					<input type="password" onChange={this.handleInput} name="password" placeholder="Password" />

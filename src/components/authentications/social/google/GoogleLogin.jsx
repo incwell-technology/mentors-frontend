@@ -32,13 +32,18 @@ class GoogleLoginComponent extends Component {
 	render() {
 		return (
 			<li>
-				{this.state.success === 'true' && <Redirect push to='home' />}
-				{this.state.success === 'false' && alert("Sign in failed. Please try again.")}
+				{ this.state.status === 200 && <Redirect push to='home' /> }
+				{!this.state.status === 200 &&
+					<div class="alert alert-danger">
+						<strong>Error!</strong>
+						Please try again later.
+					</div>
+				}
 				<GoogleLogin
 					clientId={process.env.REACT_APP_GOOGLE_KEY}
 					render={renderProps => (
-						<i style={{ cursor: 'pointer' }} className="fab fa-google" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
-					)}
+						<i style={{ cursor: 'pointer' }} className="fa fa-google icon icon-google" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
+					  )}
 					buttonText="Login"
 					onSuccess={this.handleAuth}
 					onFailure={this.handleAuth}

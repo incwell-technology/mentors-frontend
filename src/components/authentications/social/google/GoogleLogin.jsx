@@ -2,7 +2,18 @@ import React, { Component } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import swal from 'sweetalert'
+
+require('dotenv').config({ path: '.env' })
+const key = process.env.REACT_APP_GOOGLE_KEY
+let base_url
+
+if (process.env.NODE_ENV === "development") {
+	base_url = 'http://192.168.1.110:3000/v1/auth/google'
+}
+else {
+	base_url = process.env.REACT_APP_BASE_URL
+}
+
 
 class GoogleLoginComponent extends Component {
 	state = {
@@ -11,7 +22,7 @@ class GoogleLoginComponent extends Component {
 
 	handleAuth = async (res) => {
 		try {
-			const data = await axios.post('http://192.168.1.130:3000/v1/auth/google', { accessToken: res.accessToken })
+			const data = await axios.post(base_url, { accessToken: res.accessToken })
 			this.setState({ success: data.data.success })
 		} catch (error) {
 			this.setState({ success: 'false' })
@@ -22,9 +33,9 @@ class GoogleLoginComponent extends Component {
 		return (
 			<li>
 				{this.state.success === 'true' && <Redirect push to='home' />}
-				{this.state.success === 'false' && swal("Sign in failed. Please try again.")}
+				{this.state.success === 'false' && alert("Sign in failed. Please try again.")}
 				<GoogleLogin
-					clientId="442918571972-gkidqu670g878nl2d889hlj11gei0068.apps.googleusercontent.com"
+					clientId={process.env.REACT_APP_GOOGLE_KEY}
 					render={renderProps => (
 						<i style={{ cursor: 'pointer' }} className="fab fa-google" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
 					)}
@@ -33,10 +44,6 @@ class GoogleLoginComponent extends Component {
 					onFailure={this.handleAuth}
 					cookiePolicy={'single_host_origin'}
 				/>
-				{/* <a href="#">
-						<i className="fab fa-google" />
-					</a> */}
-
 			</li>
 		)
 	}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import mentors from "./images/mentor.jpg";
-import Login from "./Login";
-import SignUpForm from "./SignUp";
+import Login from "./login/Login";
+import SignUpForm from "./signup/SignUp";
 import AuthButtons from "./AuthButtons";
 
 

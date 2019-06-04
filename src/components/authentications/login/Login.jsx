@@ -21,7 +21,7 @@ class Login extends Component {
 	handleSubmit = async e => {
 		e.preventDefault()
 		try {
-			const res = await axios.post('http://192.168.1.105:3000/mentors/login', this.state)
+			const res = await axios.post('http://192.168.1.110:3000/mentors/login', this.state)
 			if (res.status === 200) {
 				this.setState({ status: res.status })
 			}
@@ -37,7 +37,7 @@ class Login extends Component {
 	render() {
 		return (
 			<>
-				{this.state.status === 200 && <Redirect push to='/home' />}
+				{this.state.status === 200 && <Redirect push to='/page' />}
 				{this.state.status === 409 && <Failed />}
 				<form onSubmit={this.handleSubmit} method="post">
 					<input type="email" onChange={this.handleInput} name="email" placeholder="Email address" />

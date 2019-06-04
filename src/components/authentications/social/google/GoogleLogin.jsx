@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import swal from 'sweetalert'
 
 class GoogleLoginComponent extends Component {
 	state = {
@@ -21,13 +20,18 @@ class GoogleLoginComponent extends Component {
 	render() {
 		return (
 			<li>
-				{this.state.success === 'true' && <Redirect push to='home' />}
-				{this.state.success === 'false' && swal("Sign in failed. Please try again.")}
+				{ this.state.status === 200 && <Redirect push to='home' /> }
+				{!this.state.status === 200 &&
+					<div class="alert alert-danger">
+						<strong>Error!</strong>
+						Please try again later.
+					</div>
+				}
 				<GoogleLogin
 					clientId="442918571972-gkidqu670g878nl2d889hlj11gei0068.apps.googleusercontent.com"
 					render={renderProps => (
-						<i style={{ cursor: 'pointer' }} className="fab fa-google" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
-					)}
+						<i style={{ cursor: 'pointer' }} className="fa fa-google icon icon-google" onClick={renderProps.onClick} disabled={renderProps.disabled}></i>
+					  )}
 					buttonText="Login"
 					onSuccess={this.handleAuth}
 					onFailure={this.handleAuth}

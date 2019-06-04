@@ -9,11 +9,6 @@ body{
     width: 100%;
     height: 100%;
 }
-.background{
-    background-color: grey;
-    width: 100%;
-    height: 100%;
-}
 .headerimg > img{
     width: 140px;
     height: 145px;
@@ -137,6 +132,7 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
+/*Select user page*/
 .header{
     background-color: #1790c5;
     font-family: 'Roboto' sans-serif;
@@ -208,9 +204,11 @@ input[type=submit] {
     
 }
 .item2 .active{
+    transform: translate(0px, -45px);
     transition: 0.5s ease-in-out;
     box-shadow: 0 4px 11px 3px #00000063;;
 }
+/*Email verification page*/
 .verifybox{
     background-color: #fff;
     width: 50%;
@@ -222,6 +220,18 @@ input[type=submit] {
     margin: 10%;
     padding: 10%;
 }
+/* Profile page*/
+.profilelogo{
+    margin: 8px auto 0px auto;
+}
+.profilelogo img{
+    width: 100%;
+    height: auto;
+}
+.navigation a{
+    margin-left: 10%; 
+}
+/*media queries*/
 @media only screen and (max-width: 768px){
     .container{
         flex-wrap: wrap;

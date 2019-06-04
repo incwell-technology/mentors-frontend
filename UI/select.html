@@ -12,10 +12,10 @@
     <div class="selectcontainer">
         <div class="item1 selecttext"><h2>Choose your user type </h2></div>
         <div class="item2">
-            <div class="flex1">
+            <div class="flex1 mentor-select">
                 <img src="mentor1.png">
             </div>
-            <div class="flex2">
+            <div class="flex2 active student-select">
                 <img src="student1.png">
             </div>
         </div>
@@ -23,5 +23,20 @@
             <button class="next">Next</button>
         </div>
     </div>
+    <script>
+        const student = document.querySelector('.student-select')
+        const mentor = document.querySelector('.mentor-select')
+
+        student.addEventListener('click', () => {
+            student.classList.add('active')
+            mentor.classList.remove('active')
+        })
+
+        mentor.addEventListener('click', () => {
+            student.classList.remove('active')
+            mentor.classList.add('active')
+        })
+
+    </script>
 </body>
 </html>

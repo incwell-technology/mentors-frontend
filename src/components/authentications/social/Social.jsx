@@ -1,8 +1,7 @@
 import React from 'react'
-import GoogleLogin from './google/GoogleLogin'
 import FacebookLogin from './facebook/FacebookLogin'
 import LinkedInLogin from './linkedin/LinkedInLogin'
-//import GithubLogin from './github/GithubLogin';
+import GoogleLoginComponent from './google/GoogleLogin';
 
 
 const Social = () => {
@@ -12,7 +11,7 @@ const Social = () => {
 			<p>Sign in with</p>
 			<ul>
 				<FacebookLogin />
-				<GoogleLogin />
+				<GoogleLoginComponent />
 				<LinkedInLogin />
 				
 			</ul>

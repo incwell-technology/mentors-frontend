@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
+let base_url
+if (process.env.NODE_ENV === "development") {
+	base_url = 'http://192.168.1.110:3000/v1/mentors/signup'
+}
+else {
+	base_url = process.env.REACT_APP_BASE_URL
+}
 export default class SignUp extends Component {
 	state = {
 		first_name: "",
@@ -9,7 +16,8 @@ export default class SignUp extends Component {
 		email: "",
 		user_role: "",
 		password: "",
-		confirm_password: ""
+		confirm_password: "",
+		error: ""
 	}
 
 	handleInput = e => {
@@ -19,16 +27,14 @@ export default class SignUp extends Component {
 	handleSubmit = async e => {
 		e.preventDefault();
 		try {
-			const res = await axios.post(
-				"http://192.168.1.120:3000/v1/mentors/signup",
-				this.state
-			);
-
+			const res = await axios.post(base_url, this.state);
 			console.log(res);
 			this.setState({ status: res.status });
 		}
 		catch (error) {
-			console.log(error);
+			if (error.name === 'Error') {
+				this.setState({ error: error.name })
+			}
 		}
 	};
 
@@ -66,24 +72,13 @@ export default class SignUp extends Component {
 
 	};
 
-	// emptyCheck = ({ first_name, last_name, email, password, confirm_password})=>{
-	// 	return( 
-	// 		first_name === "" ||
-	// 		last_name === "" ||
-	// 		email === "" ||
-	// 		password === "" ||
-	// 		confirm_password === "" 
-	// 	)
-	// }
 	render() {
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit} method="post">
-					{/* {this.emptyCheck(this.state) && (
-						<p style={{fontSize:'12px', marginLeft:'-20px'}}>All fields are compulsary.*</p>
-					)}  */}
-					<input type="radio" onChange={this.handleInput} className="mentor" name="user_role" value="1" checked="checked" /> Mentor
-					<input type="radio" onChange={this.handleInput} className="student" name="user_role" value="0" /> Student
+					
+					<input type="radio" onChange={this.handleInput} className="mentor" name="user_role" value="Mentors" checked="checked" /> Mentor
+					<input type="radio" onChange={this.handleInput} className="student" name="user_role" value="Students" /> Student
 					<input type="text" onChange={this.handleInput} name="first_name" placeholder="First Name *" autoComplete="off" /><br />
 					{this.state.first_name.length > 0 && !this.validateFirstName(this.state.first_name) &&
 						<div className="helper"> <p>Enter valid name</p></div>}
@@ -122,8 +117,10 @@ export default class SignUp extends Component {
 						<input type="submit" value="Signup" />
 					)}
 
-					{this.state.status === 201 && <Redirect to="/Test" />}
-					{!this.state.status === 201 && <div class="alert alert-warning">
+					{this.state.status === 201 && <Redirect to="/home" />}
+					{this.state.status === 422 && <div class="alert alert-warning">
+						<strong>Error!</strong> Email already exist.<br /> please try again!</div>}
+					{this.state.error.length > 0 && <div class="alert alert-warning">
 						<strong>Error!</strong> SignUp failed.<br /> please try again!</div>}
 
 				</form>

@@ -37,7 +37,7 @@ class Login extends Component {
 	render() {
 		return (
 			<>
-				{this.state.status === 200 && <Redirect push to='/home' />}
+				{this.state.status === 200 && <Redirect push to='/page' />}
 				{this.state.status === 409 && <Failed />}
 				<form onSubmit={this.handleSubmit} method="post">
 					<input type="email" onChange={this.handleInput} name="email" placeholder="Email address" />

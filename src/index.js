@@ -6,6 +6,7 @@ import { Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(
     <Router history={history}>
@@ -13,4 +14,4 @@ ReactDOM.render(
     </Router>
     , document.getElementById('root'));
 
-serviceWorker.unregister();
+serviceWorker.unregister()

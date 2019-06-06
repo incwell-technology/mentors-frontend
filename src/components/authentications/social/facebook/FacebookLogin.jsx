@@ -8,7 +8,7 @@ const key = process.env.REACT_APP_FACEBOOK_KEY
 let base_url
 
 if (process.env.NODE_ENV === "development") {
-	base_url = 'http://192.168.1.110:3000/v1/auth/facebook'
+	base_url = 'http://192.168.1.144:3000/v1/auth/facebook'
 }
 else {
 	base_url = process.env.REACT_APP_BASE_URL
@@ -17,18 +17,18 @@ console.log(process.env.REACT_APP_BASE_URL)
 class FacebookLoginComponent extends Component {
 	state = {
 		status: '',
-		error: ''
+		error: '',
+		data: ''
 
 	}
 
 	MyFacebookButton = ({ onClick }) => (
 		<i style={{ cursor: 'pointer' }} class="fa fa-facebook icon icon-facebook" onClick={onClick}></i>
 	);
+
 	authenticate = async (res) => {
 		try {
-			console.log(res.accessToken)
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
-			console.log(data.status)
 			this.setState({ status: data.status })
 		}
 		catch (error) {
@@ -42,7 +42,6 @@ class FacebookLoginComponent extends Component {
 	render() {
 		return (
 			<li>
-
 				{this.state.error.length > 0 && <div className="alert alert-warning">
 					<strong>Error!</strong> Signin failed.<br /> please try again!</div>}
 				<FacebookAuth

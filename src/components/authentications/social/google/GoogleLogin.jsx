@@ -8,7 +8,7 @@ const key = process.env.REACT_APP_GOOGLE_KEY
 let base_url
 
 if (process.env.NODE_ENV === "development") {
-	base_url = 'http://192.168.1.110:3000/v1/auth/google'
+	base_url = 'http://192.168.1.144:3000/v1/auth/google'
 }
 else {
 	base_url = process.env.REACT_APP_BASE_URL
@@ -21,6 +21,7 @@ class GoogleLoginComponent extends Component {
 	}
 
 	handleAuth = async (res) => {
+		console.log(res.accessToken)
 		try {
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
 			this.setState({ success: data.data.success })
@@ -32,8 +33,8 @@ class GoogleLoginComponent extends Component {
 	render() {
 		return (
 			<li>
-				{ this.state.status === 200 && <Redirect push to='home' /> }
-				{!this.state.status === 200 &&
+				{ this.state.success === 'true' && <Redirect push to='home' /> }
+				{!this.state.success === 'false' &&
 					<div class="alert alert-danger">
 						<strong>Error!</strong>
 						Please try again later.

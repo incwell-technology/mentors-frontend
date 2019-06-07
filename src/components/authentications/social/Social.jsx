@@ -1,6 +1,6 @@
 import React from 'react'
 import GoogleLogin from './google/GoogleLogin'
-import FacebookLogin from './facebook/FacebookLogin'
+import Facebook from './facebook/FacebookLogin'
 import LinkedInLogin from './linkedin/LinkedInLogin'
 //import GithubLogin from './github/GithubLogin';
 
@@ -11,7 +11,7 @@ const Social = () => {
 			<p>or</p>
 			<p>Sign in with</p>
 			<ul>
-				<FacebookLogin />
+				<Facebook />
 				<GoogleLogin />
 				<LinkedInLogin />
 				

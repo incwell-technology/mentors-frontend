@@ -1,27 +1,54 @@
 import React, { Component } from 'react'
 import student from "../images/student.png"
-import teacher from "../images/teacher.png"
+import teacher from "../images/mentor.png"
+import axios from 'axios'
 
-const SelectUser = () => {
+class SelectUser extends Component {
+    state = {
+        userRole: 'Student'
+    }
 
-    return (
-        <div>
-            <div className="selectcolor"><h1> WELCOME TO I NEED MENTOR!<br /> Sign Up as </h1></div>
-            <div className="selectuser">
-                <div className="user">
-                    <img src={teacher} />
-                    <h2 className="selectcolor">MENTOR</h2>
-                </div>
-                <div className="user">
-                    <img src={student} />
-                    <h2 className="selectcolor">STUDENT</h2>
-                </div>
-            </div>
+    handleSelect = role => {
+        const student = document.querySelector('.student-select')
+        const mentor = document.querySelector('.mentor-select')
+
+        if (role == 'student') {
+            student.classList.add('active')
+            mentor.classList.remove('active')
+            this.setState({ userRole: 'Student' })
+        } else if (role == 'mentor') {
+            student.classList.remove('active')
+            mentor.classList.add('active')
+            this.setState({ userRole: 'Mentor' })
+        }
+    }
+
+    handleSubmit = async () => {
+        
+    }
+
+    render() {
+        console.log(this.state.userRole)
+        return (
             <div>
-                <button className="next">Next</button>
+                <div class="selectheader"> <h2>Welcome to ineedmentors.com!</h2> </div>
+                <div class="selectcontainer">
+                    <div class="item1 selecttext"><h2>Choose your user type </h2></div>
+                    <div class="item2">
+                        <div class="flex1 mentor-select" onClick={() => this.handleSelect('mentor')}>
+                            <img src={teacher} />
+                        </div>
+                        <div class="flex2 active student-select">
+                            <img src={student} onClick={() => this.handleSelect('student')}/>
+                        </div>
+                    </div>
+                    <div class="item3">
+                        <button class="next" onClick={this.handleSubmit}>Next</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default SelectUser

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import student from "../images/student.png"
-import teacher from "../images/mentor.png"
+import mentor from "../images/mentor.png"
 import axios from 'axios'
 
 class SelectUser extends Component {
@@ -36,7 +36,7 @@ class SelectUser extends Component {
                     <div class="item1 selecttext"><h2>Choose your user type </h2></div>
                     <div class="item2">
                         <div class="flex1 mentor-select" onClick={() => this.handleSelect('mentor')}>
-                            <img src={teacher} />
+                            <img src={mentor} />
                         </div>
                         <div class="flex2 active student-select">
                             <img src={student} onClick={() => this.handleSelect('student')}/>

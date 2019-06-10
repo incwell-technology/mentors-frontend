@@ -31,8 +31,6 @@ class GoogleLoginComponent extends Component {
 	}
 
 	render() {
-		console.log(this.state)
-		console.log(base_url)
 		return (
 			<li>
 				{ !this.state.userData.hasOwnProperty('userRole') && Object.entries(this.state.userData).length != 0 && <Redirect push to='role' />}

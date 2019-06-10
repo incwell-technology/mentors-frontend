@@ -16,7 +16,6 @@ function App() {
             <Router basename='/'>
                  <Route exact path='/' component={Authentication} />
                 <Route path='/home' component={Test} />
-                {/* <Route path='/verification' component={Verification} /> */}
                 <Route path='/page' component={homePage} />
                 <Route path='/role' component={SelectUser} />
                 <Route path='/pop' component={PopUp} />

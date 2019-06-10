@@ -3,11 +3,18 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import Social from '../social/Social'
 
+let base_url
+if (process.env.NODE_ENV === "development") {
+	base_url = process.env.REACT_APP_DEV_URL + '/mentors/login'
+}
+else {
+	base_url = process.env.REACT_APP_BASE_URL
+}
 
 const Failed = () => {
 	return (
 		<div className='login-warning'>
-			Login Failed. Please try again.
+			Login Failbased. Please try again.
 		</div>
 	)
 }
@@ -21,7 +28,7 @@ class Login extends Component {
 	handleSubmit = async e => {
 		e.preventDefault()
 		try {
-			const res = await axios.post('http://192.168.1.110:3000/mentors/login', this.state)
+			const res = await axios.post(base_url, this.state)
 			if (res.status === 200) {
 				this.setState({ status: res.status })
 			}

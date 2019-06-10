@@ -4,7 +4,7 @@ import axios from 'axios'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 require('dotenv').config({ path: ".env" })
-const key = process.env.REACT_APP_API_KEY
+const key = process.env.REACT_APP_FACEBOOK_KEY
 
 class Facebook extends Component {
 	state = {

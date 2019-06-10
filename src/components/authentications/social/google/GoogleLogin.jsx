@@ -4,11 +4,10 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
 require('dotenv').config({ path: '.env' })
-const key = process.env.REACT_APP_GOOGLE_KEY
 let base_url
 
 if (process.env.NODE_ENV === "development") {
-	base_url = 'http://192.168.1.110:3000/v1/auth/google'
+	base_url = process.env.REACT_APP_DEV_URL +'/v1/auth/google'
 }
 else {
 	base_url = process.env.REACT_APP_BASE_URL
@@ -17,27 +16,35 @@ else {
 
 class GoogleLoginComponent extends Component {
 	state = {
-		success: ''
+		success: '',
+		userData: {},
+		accessToken: ''
 	}
 
 	handleAuth = async (res) => {
 		try {
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
-			this.setState({ success: data.data.success })
+			this.setState({ success: data.data.success, userData: data.data.payload.data, accessToken: data.data.payload.accessToken })
 		} catch (error) {
-			this.setState({ success: 'false' })
+			this.setState({ success: 'false', payload: 'Nothing' })
 		}
 	}
 
 	render() {
 		return (
 			<li>
-				{ this.state.status === 200 && <Redirect push to='home' /> }
-				{!this.state.status === 200 &&
-					<div class="alert alert-danger">
+				{ !this.state.userData.hasOwnProperty('userRole') && Object.entries(this.state.userData).length != 0 && <Redirect push to='role' />}
+				{ this.state.success === 'true' && this.state.userData.hasOwnProperty('userRole') && <Redirect push to={{
+					pathname: '/',
+					state: {
+						accessToken: this.state.accessToken
+					}
+				}} /> }
+				{ this.state.success === 'false' &&
+					(<div class="alert alert-danger">
 						<strong>Error!</strong>
 						Please try again later.
-					</div>
+					</div>)
 				}
 				<GoogleLogin
 					clientId={process.env.REACT_APP_GOOGLE_KEY}

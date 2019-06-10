@@ -1,3 +1,7 @@
+:root{
+    --translate-size: -20px;
+}
+
 * {
     box-sizing: border-box;
   }
@@ -6,11 +10,6 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 .column1 > img{
-    width: 100%;
-    height: 100%;
-}
-.background{
-    background-color: grey;
     width: 100%;
     height: 100%;
 }
@@ -137,9 +136,10 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
+/*Select user page*/
 .header{
     background-color: #1790c5;
-    font-family: 'Roboto' sans-serif;
+    font-family: 'Roboto', sans-serif;
 
 }
 .selectcontainer{
@@ -158,6 +158,7 @@ input[type=submit] {
 .selectheader{
     color: #3d6fadf0;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 .item1{
     height:45px;
@@ -173,13 +174,13 @@ input[type=submit] {
     height: 100%;
 }
 .flex1{
-    height: 211px;
+    /* height: 211px; */
     align-self: center;
     width: 30%;
     
 }
 .flex2{
-    height: 211px;
+    /* height: 211px; */
     align-self: center;
     width: 30%;
     
@@ -197,36 +198,45 @@ input[type=submit] {
 }
 .flex1:hover, .flex2:hover{
     transition: 0.5s ease-in-out;
-    transform: translate(0px, -45px);
+    transform: translate(0px, var(--translate-size));
 }
 .flex1:active, .flex2:active{
     transition: 0.5s ease-in-out;
-    box-shadow: 0 4px 11px 3px #00000063;
+    box-shadow: 0 4px 11px 3px #00000063;;
 }
 .item3{
     align-self: center;
     
 }
 .item2 .active{
+    transform: translate(0px, var(--translate-size));
     transition: 0.5s ease-in-out;
-    box-shadow: 0 4px 11px 3px #00000063;
-        transform: translate(0px, -45px);
+    box-shadow: 0 4px 11px 3px #00000063;;
 }
+/*Email verification page*/
 .verifybox{
     background-color: #fff;
     width: 50%;
     height: auto; 
-    box-shadow: 0 4px 11px 3px #00000063;
+    box-shadow: 0 4px 11px 3px #00000063;;
     margin: 2% auto;
 }
 .verifyform{
     margin: 10%;
     padding: 10%;
 }
-
-.alert{
-    font-size: 15px;
+/* Profile page*/
+.profilelogo{
+    margin: 8px auto 0px auto;
 }
+.profilelogo img{
+    width: 100%;
+    height: auto;
+}
+.navigation a{
+    margin-left: 10%; 
+}
+/*media queries*/
 @media only screen and (max-width: 768px){
     .container{
         flex-wrap: wrap;

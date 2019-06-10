@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-import FacebookAuth from 'react-facebook-auth'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 require('dotenv').config({ path: '.env' })
 const key = process.env.REACT_APP_FACEBOOK_KEY
 let base_url
 
 if (process.env.NODE_ENV === "development") {
-	base_url = 'http://192.168.1.110:3000/v1/auth/facebook'
+	base_url = process.env.REACT_APP_DEV_URL +'/v1/auth/facebook'
 }
 else {
 	base_url = process.env.REACT_APP_BASE_URL
@@ -16,43 +16,44 @@ else {
 console.log(process.env.REACT_APP_BASE_URL)
 class FacebookLoginComponent extends Component {
 	state = {
-		status: '',
-		error: ''
-
+		success: '',
+		userData: {},
+		accessToken: ''
 	}
 
-	MyFacebookButton = ({ onClick }) => (
-		<i style={{ cursor: 'pointer' }} class="fa fa-facebook icon icon-facebook" onClick={onClick}></i>
-	);
 	authenticate = async (res) => {
 		try {
-			console.log(res.accessToken)
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
-			console.log(data.status)
-			this.setState({ status: data.status })
+			this.setState({ success: data.data.success, userData: data.data.payload.data, accessToken: data.data.payload.accessToken })
+		} catch (error) {
+			this.setState({ success: 'false', payload: 'Nothing' })
 		}
-		catch (error) {
-			if (error.name === 'Error') {
-				this.setState({ error: error.name })
-			}
-			console.log(typeof error)
-		}
-
 	}
+
 	render() {
 		return (
 			<li>
-
-				{this.state.error.length > 0 && <div className="alert alert-warning">
-					<strong>Error!</strong> Signin failed.<br /> please try again!</div>}
-				<FacebookAuth
+				{ !this.state.userData.hasOwnProperty('userRole') && Object.entries(this.state.userData).length != 0 && <Redirect push to='role' />}
+				{ this.state.success === 'true' && this.state.userData.hasOwnProperty('userRole') && <Redirect push to={{
+					pathname: '/',
+					state: {
+						accessToken: this.state.accessToken
+					}
+				}} /> }
+				{ this.state.success === 'false' &&
+					(<div class="alert alert-danger">
+						<strong>Error!</strong>
+						Please try again later.
+					</div>)
+				}
+				<FacebookLogin
 					appId={key}
+					autoLoad
 					callback={this.authenticate}
-					component={this.MyFacebookButton}
+					render={renderProps => (
+						<i style={{ cursor: 'pointer' }} onClick={renderProps.onClick} className="fa fa-facebook icon icon-facebook"></i>
+					)}
 				/>
-				{this.state.status === 201 && <Redirect push to='/role' />}
-				{this.state.status === 200 && <Redirect push to='/page' />}
-				{this.state.status === 409 && <Redirect push to='/pop' />}
 			</li>
 		)
 	}

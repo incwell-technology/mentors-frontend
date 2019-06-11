@@ -14,7 +14,7 @@ export default class SignUp extends Component {
 		first_name: "",
 		last_name: "",
 		email: "",
-		user_role: "",
+		user_role: "Mentors",
 		password: "",
 		confirm_password: "",
 		error: ""
@@ -28,7 +28,6 @@ export default class SignUp extends Component {
 		e.preventDefault();
 		try {
 			const res = await axios.post(base_url, this.state);
-			console.log(res);
 			this.setState({ status: res.status });
 		}
 		catch (error) {
@@ -77,8 +76,8 @@ export default class SignUp extends Component {
 			<div>
 				<form onSubmit={this.handleSubmit} method="post">
 					
-					<input type="radio" onChange={this.handleInput} className="mentor" name="user_role" value="Mentors" checked="checked" /> Mentor
-					<input type="radio" onChange={this.handleInput} className="student" name="user_role" value="Students" /> Student
+					<input type="radio" onChange={this.handleInput} className="mentor" name="user_role" value="Mentors" checked /> Mentor
+					<input type="radio" onChange={this.handleInput} className="student" name="user_role" style={{marginLeft: '10px'}} value="Students" /> Student
 					<input type="text" onChange={this.handleInput} name="first_name" placeholder="First Name *" autoComplete="off" /><br />
 					{this.state.first_name.length > 0 && !this.validateFirstName(this.state.first_name) &&
 						<div className="helper"> <p>Enter valid name</p></div>}

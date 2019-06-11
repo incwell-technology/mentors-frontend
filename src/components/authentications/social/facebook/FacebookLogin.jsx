@@ -22,15 +22,18 @@ class FacebookLoginComponent extends Component {
 	}
 
 	authenticate = async (res) => {
+		console.log(res)
 		try {
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
 			this.setState({ success: data.data.success, userData: data.data.payload.data, accessToken: data.data.payload.accessToken })
 		} catch (error) {
+			console.log(error)
 			this.setState({ success: 'false', payload: 'Nothing' })
 		}
 	}
 
 	render() {
+		console.log(this.state.success === true)
 		return (
 			<li>
 				{ !this.state.userData.hasOwnProperty('userRole') && Object.entries(this.state.userData).length != 0 && <Redirect push to='role' />}
@@ -41,14 +44,13 @@ class FacebookLoginComponent extends Component {
 					}
 				}} /> }
 				{ this.state.success === 'false' &&
-					(<div class="alert alert-danger">
+					(<div className="alert alert-danger">
 						<strong>Error!</strong>
 						Please try again later.
 					</div>)
 				}
 				<FacebookLogin
 					appId={key}
-					autoLoad
 					callback={this.authenticate}
 					render={renderProps => (
 						<i style={{ cursor: 'pointer' }} onClick={renderProps.onClick} className="fa fa-facebook icon icon-facebook"></i>

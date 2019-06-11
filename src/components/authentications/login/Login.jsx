@@ -14,7 +14,7 @@ else {
 const Failed = () => {
 	return (
 		<div className='login-warning'>
-			Login Failed. Please try again.
+			Login Failbased. Please try again.
 		</div>
 	)
 }

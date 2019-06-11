@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "development") {
 	base_url = process.env.REACT_APP_DEV_URL +'/v1/auth/facebook'
 }
 else {
-	base_url = process.env.REACT_APP_BASE_URL
+	base_url = process.env.REACT_APP_BASE_URL + +'/v1/auth/facebook'
 }
 console.log(process.env.REACT_APP_BASE_URL)
 class FacebookLoginComponent extends Component {
@@ -32,7 +32,6 @@ class FacebookLoginComponent extends Component {
 	}
 
 	render() {
-		console.log(this.state.success === true)
 		return (
 			<li>
 				{ !this.state.userData.hasOwnProperty('userRole') && Object.entries(this.state.userData).length != 0 && <Redirect push to='role' />}

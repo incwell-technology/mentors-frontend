@@ -26,6 +26,7 @@ class FacebookLoginComponent extends Component {
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
 			this.setState({ success: data.data.success, userData: data.data.payload.data, accessToken: data.data.payload.accessToken })
 		} catch (error) {
+			console.log(error)
 			this.setState({ success: 'false' })
 		}
 	}

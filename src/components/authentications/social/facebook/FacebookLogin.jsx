@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "development") {
 	base_url = process.env.REACT_APP_DEV_URL +'/v1/auth/facebook'
 }
 else {
-	base_url = process.env.REACT_APP_BASE_URL + +'/v1/auth/facebook'
+	base_url = process.env.REACT_APP_BASE_URL +'/v1/auth/facebook'
 }
 console.log(process.env.REACT_APP_BASE_URL)
 class FacebookLoginComponent extends Component {

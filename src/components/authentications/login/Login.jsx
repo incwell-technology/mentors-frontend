@@ -5,14 +5,6 @@ import Social from '../social/Social'
 
 let base_url
 if (process.env.NODE_ENV === "development") {
-	base_url = process.env.REACT_APP_DEV_URL + '/mentors/login'
-}
-else {
-	base_url = process.env.REACT_APP_BASE_URL
-}
-
-let base_url
-if (process.env.NODE_ENV === "development") {
 	base_url = process.env.REACT_APP_DEV_URL +'/v1/mentors/login'
 }
 else {
@@ -22,7 +14,7 @@ else {
 const Failed = () => {
 	return (
 		<div className='login-warning'>
-			Login Failbased. Please try again.
+			Login Fail. Please try again.
 		</div>
 	)
 }
@@ -30,7 +22,8 @@ class Login extends Component {
 	state = {
 		email: '',
 		password: '',
-		status: ''
+		status: '',
+		error: false
 	}
 
 	handleSubmit = async e => {
@@ -41,7 +34,7 @@ class Login extends Component {
 				this.setState({ status: res.status })
 			}
 		} catch (error) {
-			console.log(error)
+			this.setState({error: true})
 		}
 	}
 
@@ -54,6 +47,7 @@ class Login extends Component {
 			<>
 				{this.state.status === 200 && <Redirect push to='/page' />}
 				{this.state.status === 409 && <Failed />}
+				{this.state.error && <div className='warning'>Login Failed</div>}
 				<form onSubmit={this.handleSubmit} method="post">
 					<input type="email" onChange={this.handleInput} name="email" placeholder="Email address" />
 					<input type="password" onChange={this.handleInput} name="password" placeholder="Password" />

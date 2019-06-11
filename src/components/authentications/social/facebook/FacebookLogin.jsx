@@ -26,8 +26,7 @@ class FacebookLoginComponent extends Component {
 			const data = await axios.post(base_url, { accessToken: res.accessToken })
 			this.setState({ success: data.data.success, userData: data.data.payload.data, accessToken: data.data.payload.accessToken })
 		} catch (error) {
-			console.log(error)
-			this.setState({ success: 'false', payload: 'Nothing' })
+			this.setState({ success: 'false' })
 		}
 	}
 
@@ -43,7 +42,7 @@ class FacebookLoginComponent extends Component {
 				}} /> }
 				{ this.state.success === 'false' &&
 					(<div className="alert alert-danger">
-						<strong>Error!</strong>
+						<strong>Error!</strong><br/>
 						Please try again later.
 					</div>)
 				}

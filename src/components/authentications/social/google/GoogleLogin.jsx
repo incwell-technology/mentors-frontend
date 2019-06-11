@@ -41,8 +41,8 @@ class GoogleLoginComponent extends Component {
 					}
 				}} /> }
 				{ this.state.success === 'false' &&
-					(<div class="alert alert-danger">
-						<strong>Error!</strong>
+					(<div className="alert alert-danger">
+						<strong>Error!</strong> 
 						Please try again later.
 					</div>)
 				}

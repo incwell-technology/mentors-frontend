@@ -4,10 +4,10 @@ import { Redirect } from "react-router-dom";
 
 let base_url
 if (process.env.NODE_ENV === "development") {
-	base_url = 'http://192.168.1.110:3000/v1/mentors/signup'
+	base_url = process.env.REACT_APP_DEV_URL +'/v1/mentors/signup'
 }
 else {
-	base_url = process.env.REACT_APP_BASE_URL
+	base_url = process.env.REACT_APP_BASE_URL +'/v1/mentors/signup'
 }
 export default class SignUp extends Component {
 	state = {

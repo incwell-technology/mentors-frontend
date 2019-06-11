@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === "development") {
 	base_url = process.env.REACT_APP_DEV_URL +'/v1/auth/google'
 }
 else {
-	base_url = process.env.REACT_APP_BASE_URL
+	base_url = process.env.REACT_APP_BASE_URL +'/v1/auth/google'
 }
 
 

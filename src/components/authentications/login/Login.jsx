@@ -11,6 +11,14 @@ else {
 	base_url = process.env.REACT_APP_BASE_URL
 }
 
+let base_url
+if (process.env.NODE_ENV === "development") {
+	base_url = process.env.REACT_APP_DEV_URL +'/v1/mentors/login'
+}
+else {
+	base_url = process.env.REACT_APP_BASE_URL +'/v1/mentors/login'
+}
+
 const Failed = () => {
 	return (
 		<div className='login-warning'>

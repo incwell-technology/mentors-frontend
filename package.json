@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://ineedmentor.com",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "dotenv": "^8.0.0",
     "font-awesome": "^4.7.0",
